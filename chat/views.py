@@ -20,8 +20,8 @@ def addUserToChat(request):
     if request.method == 'POST':
         userid = request.POST['userid']
         second_person = User.objects.get(id = userid)
-        if Thread.objects.filter(first_person = request.user, second_person = second_person ).exists() or Thread.objects.filter(first_person = second_person, second_person =request.user  ).exists:
+        if Thread.objects.filter(first_person = request.user, second_person = second_person ).exists() or Thread.objects.filter(first_person = second_person, second_person =request.user).exists():
             return redirect("/chat")
         else:
-            Thread.objects.create(first_person = request.user, second_person = second_person )
+            Thread.objects.create(first_person = request.user, second_person = second_person)
     return redirect("/chat")
